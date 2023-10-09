@@ -1,0 +1,9 @@
+<%= form_for [@post, @comment], method: :patch do |form| %>
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content, rows: 3 %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Edit Comment' %>
+  </div>
+<% end %>
