@@ -5,67 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
-
   <style>
-      /* Reset some default styles */
-      body, ul {
-          margin: 0;
-          padding: 0;
-      }
-
-      /* Style the navigation bar */
-      nav {
-          color: #fff;
-          padding: 10px;
-      }
-
-    nav ul {
-
-          list-style-type: none;
-        flex-direction: row;
+    .nav a{
+        text-decoration: none;
+        color: white;
     }
-
-
-      ul li {
-          display: inline;
-          margin-right: 20px;
-      }
-
-      ul li:last-child {
-          margin-right: 0;
-      }
-
-      ul li a {
-          text-decoration: none;
-          color: #000000;
-          font-weight: bold;
-      }
-
-      /* Style the content */
-      main {
-          padding: 20px;
-      }
+    .hobar a{
+        border: none;
+        background-color: #942a1d;
+        padding: 15px 20px;
+        border-radius: 5px;
+        border: none;
+    }
+    .hobar a:hover{
+        margin-right: 10px;
+        background:blue;
+        padding: 15px 20px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+    }
+    .hobar {
+        border: none;
+        background: none;
+    }
   </style>
 </head>
-
 <body>
-<nav>
-  <ul>
-    <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Posts', posts_path %></li>
-
+<nav class="nav">
+  <div style="margin-top: 30px;">
     <% if user_signed_in? %>
-      <li><%= link_to 'New Post', new_post_path %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+    <button class="hobar"><%= link_to 'Posts', posts_path %></button>
+    <button class="hobar"><%= link_to 'New Post', new_post_path%></button>
+    <button class="hobar"><%= link_to 'Logout', destroy_user_session_path, method: :delete %></button>
     <% else %>
-      <li><%= link_to 'Login', new_user_session_path %></li>
-      <li><%= link_to 'Register', new_user_registration_path %></li>
+      <button class="hobar"><%= link_to 'HOME', root_path%></button>
+      <button class="hobar"> <%= link_to 'Login', new_user_session_path %></button>
+      <button class="hobar"> <%= link_to 'Register', new_user_registration_path %></button>
     <% end %>
-  </ul>
+  </div>
 </nav>
-
 <main>
   <%= yield %>
 </main>

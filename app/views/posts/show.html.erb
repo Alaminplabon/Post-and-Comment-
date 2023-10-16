@@ -1,83 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Page Title</title>
-  <style>
-      /* CSS Styles */
-      h1 {
-          font-size: 24px;
-          color: #007bff;
-      }
-
-      p {
-          font-size: 16px;
-          line-height: 1.5;
-          color: #666;
-      }
-
-      h2 {
-          font-size: 20px;
-          color: #555;
-          margin-top: 20px;
-      }
-
-      ul {
-          list-style: none;
-          padding: 0;
-          display: flex;
-          flex-direction: column;
-      }
-
-      li {
-          margin-bottom: 10px;
-      }
-
-      li p {
-          font-size: 14px;
-          color: #777;
-      }
-
-      li a {
-          text-decoration: none;
-          color: #007bff;
-      }
-      ul li a{
-          color: black;
-      }
-      #comment-form {
-          margin-top: 20px;
-      }
-
-      .not-signed-in-message {
-          font-size: 14px;
-          color: #f00;
-      }
-
-      .not-signed-in-message a {
-          text-decoration: none;
-          color: #007bff;
-      }
-  </style>
-</head>
-<body>
-<!-- Your HTML and ERB code -->
-<h1><%= @post.title %></h1>
-<p><%= @post.content %></p>
-<p><%= @post.user.email%></p>
+<h1><%=@post.title %></h1>
+<p><%=@post.content %></p>
+<p><%=@post.user.email%></p>
 
 <h2>Comments</h2>
 <ul>
   <% @comments.each do |comment| %>
-    <li>
-      <%= comment.content %>
+    <>
       <%= comment.user.email %>
+    <br/>
+      <%= comment.content %>
       <% if can? :edit, comment %>
-        <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment) %>
-      <% end %>
+        <%= link_to 'Edit', edit_post_comment_path(@post, comment) %>
+    <% end %>
       <% if can? :destroy, comment %>
-        <%= link_to 'Delete Comment', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "Really?!?" } %>
+        <%= link_to 'Delete', post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "Really?!?" } %>
       <% end %>
-    </li>
+    <br/>
+    <br/>
   <% end %>
 </ul>
 
@@ -87,5 +26,5 @@
   <p class="not-signed-in-message">Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'register', new_user_registration_path %> to comment on this post.</p>
 <% end %>
 
-</body>
-</html>
+
+
